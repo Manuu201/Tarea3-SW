@@ -1,10 +1,10 @@
-# 🎯 FidelidadApp – Sistema de Tarjeta de Fidelidad Gamificada
+# FidelidadApp – Sistema de Tarjeta de Fidelidad Gamificada
 
 Proyecto de línea de comandos en **Java 21**, con arquitectura orientada a objetos, desarrollo guiado por pruebas (**TDD**) y medición de cobertura con **JaCoCo**.
 
 ---
 
-## 📌 Descripción General
+## Descripción General
 
 FidelidadApp es un sistema de fidelización para una cadena de tiendas. Permite:
 
@@ -17,7 +17,7 @@ FidelidadApp es un sistema de fidelización para una cadena de tiendas. Permite:
 
 ---
 
-## ⚙️ Requisitos Técnicos
+## ⚙Requisitos Técnicos
 
 | Elemento              | Especificación                      |
 |-----------------------|-------------------------------------|
@@ -31,7 +31,7 @@ FidelidadApp es un sistema de fidelización para una cadena de tiendas. Permite:
 
 ---
 
-## 🧪 Testeo y TDD
+## Testeo y TDD
 
 Todo el sistema fue desarrollado utilizando **Test-Driven Development (TDD)**. Cada clase tiene su archivo de pruebas correspondiente:
 
@@ -44,7 +44,7 @@ Todo el sistema fue desarrollado utilizando **Test-Driven Development (TDD)**. C
 
 ---
 
-## 🧾 Niveles de Fidelidad
+## Niveles de Fidelidad
 
 | Nivel    | Puntos Totales         | Multiplicador |
 |----------|------------------------|----------------|
@@ -58,7 +58,7 @@ Además:
 
 ---
 
-## 🧠 Diseño de Clases (Resumen UML textual)
+## Diseño de Clases (Resumen UML textual)
 
 - `Cliente`: id, nombre, correo, puntos, nivel, lógica de acumulación.
 - `Compra`: idCompra, idCliente, monto, fecha.
@@ -68,7 +68,7 @@ Además:
 
 ---
 
-## ✅ ¿Qué se ha implementado?
+## ¿Qué se ha implementado?
 
 - [x] CRUD completo de Clientes con validación de correo.
 - [x] CRUD completo de Compras.
@@ -80,7 +80,7 @@ Además:
 
 ---
 
-## 📊 Cobertura de Código (JaCoCo)
+## Cobertura de Código (JaCoCo)
 
 La cobertura fue generada con:
 
@@ -89,13 +89,13 @@ mvn clean test
 mvn jacoco:report
 ```
 
-📂 Ubicación del reporte:
+Ubicación del reporte:
 
 ```
 target/site/jacoco/index.html
 ```
 
-📈 Resultado:
+Resultado:
 
 | Métrica               | Porcentaje |
 |-----------------------|------------|
@@ -108,28 +108,28 @@ target/site/jacoco/index.html
 
 ---
 
-## ▶️ Cómo Compilar y Ejecutar
+## ▶Cómo Compilar y Ejecutar
 
-### 🔧 1. Compilar el proyecto:
+### 1. Compilar el proyecto:
 
 ```bash
 mvn clean compile
 ```
 
-### 🧪 2. Ejecutar los tests:
+### 2. Ejecutar los tests:
 
 ```bash
 mvn test
 ```
 
-### 📈 3. Generar el reporte de cobertura:
+### 3. Generar el reporte de cobertura:
 
 ```bash
 mvn jacoco:report
 start target/site/jacoco/index.html
 ```
 
-### 🖥️ 4. Ejecutar por consola (menú CLI, próximamente):
+### 4. Ejecutar por consola (menú CLI, próximamente):
 
 ```bash
 mvn exec:java -Dexec.mainClass="com.fidelidad.App"
