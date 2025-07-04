@@ -170,6 +170,17 @@ FidelidadApp/
 
 ---
 
+## ¿Qué tipo de cobertura he medido y por qué?
+
+He medido cobertura de instrucciones y cobertura de ramas utilizando la herramienta JaCoCo.
+
+La cobertura de instrucciones verifica qué porcentaje de las líneas ejecutables del código fueron realmente ejecutadas por los tests.
+
+La cobertura de ramas analiza las estructuras de control (if, switch, etc.) y evalúa si se han probado todas las decisiones posibles (verdadero y falso).
+
+Elegí medir estos dos tipos de cobertura porque proporcionan una visión clara y objetiva sobre qué tan bien los tests ejercen la lógica del sistema.
+Son también las métricas recomendadas en proyectos Java con enfoque TDD, ya que aseguran no solo que se ejecuta el código, sino también que se toman en cuenta distintos caminos lógicos.
+
 ## Conclusiones finales 
 El proyecto FidelidadApp alcanza una cobertura de instrucciones del 92% y una cobertura de ramas del 73% según el reporte generado con JaCoCo 0.8.11.
 
