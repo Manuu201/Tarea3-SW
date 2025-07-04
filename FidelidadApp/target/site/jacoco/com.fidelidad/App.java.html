@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FidelidadApp</a> &gt; <a href="index.source.html" class="el_package">com.fidelidad</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package com.fidelidad;
+
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
+
+<span class="nc" id="L10">public class App {</span>
+
+<span class="fc" id="L12">    private static Scanner scanner = new Scanner(System.in);</span>
+    public static void setScanner(InputStream input) {
+<span class="fc" id="L14">        scanner = new Scanner(input);</span>
+<span class="fc" id="L15">    }</span>
+<span class="fc" id="L16">    private static final ClienteRepository clienteRepo = new ClienteRepository();</span>
+<span class="fc" id="L17">    private static final CompraRepository compraRepo = new CompraRepository();</span>
+<span class="fc" id="L18">    private static final GestorCompras gestor = new GestorCompras(clienteRepo, compraRepo);</span>
+
+    public static void main(String[] args) {
+<span class="fc" id="L21">        boolean salir = false;</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        while (!salir) {</span>
+<span class="fc" id="L24">            mostrarMenu();</span>
+<span class="fc" id="L25">            String opcion = scanner.nextLine();</span>
+
+<span class="pc bpc" id="L27" title="1 of 6 branches missed.">            switch (opcion) {</span>
+<span class="fc" id="L28">                case &quot;1&quot; -&gt; registrarCliente();</span>
+<span class="fc" id="L29">                case &quot;2&quot; -&gt; listarClientes();</span>
+<span class="fc" id="L30">                case &quot;3&quot; -&gt; registrarCompra();</span>
+<span class="fc" id="L31">                case &quot;4&quot; -&gt; mostrarPuntajeCliente();</span>
+                case &quot;5&quot; -&gt; {
+<span class="fc" id="L33">                    System.out.println(&quot;Gracias por usar FidelidadApp. ¡Hasta pronto!&quot;);</span>
+<span class="fc" id="L34">                    salir = true;</span>
+                }
+<span class="nc" id="L36">                default -&gt; System.out.println(&quot;❌ Opción inválida. Intente nuevamente.&quot;);</span>
+            }
+        }
+<span class="fc" id="L39">    }</span>
+
+    private static void mostrarMenu() {
+<span class="fc" id="L42">        System.out.println(&quot;&quot;&quot;</span>
+                \n==== MENÚ PRINCIPAL ====
+                1. Registrar nuevo cliente
+                2. Listar clientes
+                3. Registrar compra
+                4. Ver puntos y nivel de un cliente
+                5. Salir
+                Seleccione una opción:
+                &quot;&quot;&quot;);
+<span class="fc" id="L51">    }</span>
+
+    private static void registrarCliente() {
+<span class="fc" id="L54">        System.out.print(&quot;Ingrese ID del cliente: &quot;);</span>
+<span class="fc" id="L55">        String id = scanner.nextLine();</span>
+
+<span class="fc" id="L57">        System.out.print(&quot;Ingrese nombre: &quot;);</span>
+<span class="fc" id="L58">        String nombre = scanner.nextLine();</span>
+
+<span class="fc" id="L60">        System.out.print(&quot;Ingrese correo: &quot;);</span>
+<span class="fc" id="L61">        String correo = scanner.nextLine();</span>
+
+        try {
+<span class="fc" id="L64">            Cliente nuevo = new Cliente(id, nombre, correo);</span>
+<span class="fc" id="L65">            clienteRepo.crear(nuevo);</span>
+<span class="fc" id="L66">            System.out.println(&quot;✅ Cliente registrado correctamente.&quot;);</span>
+<span class="pc" id="L67">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L68">            System.out.println(&quot;❌ Error: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L70">    }</span>
+
+    private static void listarClientes() {
+<span class="fc" id="L73">        List&lt;Cliente&gt; clientes = clienteRepo.listar();</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        if (clientes.isEmpty()) {</span>
+<span class="nc" id="L75">            System.out.println(&quot;No hay clientes registrados.&quot;);</span>
+<span class="nc" id="L76">            return;</span>
+        }
+<span class="fc" id="L78">        System.out.println(&quot;\n==== Lista de Clientes ====&quot;);</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        for (Cliente c : clientes) {</span>
+<span class="fc" id="L80">            System.out.printf(&quot;ID: %s | Nombre: %s | Correo: %s | Puntos: %d | Nivel: %s\n&quot;,</span>
+<span class="fc" id="L81">                    c.getId(), c.getNombre(), c.getCorreo(), c.getPuntos(), c.getNivel());</span>
+        }
+<span class="fc" id="L83">    }</span>
+
+    private static void registrarCompra() {
+<span class="fc" id="L86">        System.out.print(&quot;Ingrese ID de la compra: &quot;);</span>
+<span class="fc" id="L87">        String idCompra = scanner.nextLine();</span>
+
+<span class="fc" id="L89">        System.out.print(&quot;Ingrese ID del cliente: &quot;);</span>
+<span class="fc" id="L90">        String idCliente = scanner.nextLine();</span>
+
+<span class="fc" id="L92">        System.out.print(&quot;Ingrese monto de la compra: &quot;);</span>
+        int monto;
+        try {
+<span class="fc" id="L95">            monto = Integer.parseInt(scanner.nextLine());</span>
+<span class="pc" id="L96">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L97">            System.out.println(&quot;❌ Monto inválido.&quot;);</span>
+<span class="nc" id="L98">            return;</span>
+        }
+
+<span class="fc" id="L101">        System.out.print(&quot;Ingrese fecha de la compra (YYYY-MM-DD): &quot;);</span>
+        LocalDate fecha;
+        try {
+<span class="fc" id="L104">            fecha = LocalDate.parse(scanner.nextLine());</span>
+<span class="pc" id="L105">        } catch (DateTimeParseException e) {</span>
+<span class="nc" id="L106">            System.out.println(&quot;❌ Fecha inválida.&quot;);</span>
+<span class="nc" id="L107">            return;</span>
+        }
+
+        try {
+<span class="fc" id="L111">            gestor.registrarCompra(idCompra, idCliente, monto, fecha);</span>
+<span class="fc" id="L112">            System.out.println(&quot;✅ Compra registrada con éxito.&quot;);</span>
+<span class="pc" id="L113">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L114">            System.out.println(&quot;❌ Error: &quot; + e.getMessage());</span>
+        }
+<span class="fc" id="L116">    }</span>
+
+    private static void mostrarPuntajeCliente() {
+<span class="fc" id="L119">        System.out.print(&quot;Ingrese ID del cliente: &quot;);</span>
+<span class="fc" id="L120">        String id = scanner.nextLine();</span>
+
+<span class="fc" id="L122">        Optional&lt;Cliente&gt; cliente = clienteRepo.buscarPorId(id);</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        if (cliente.isPresent()) {</span>
+<span class="fc" id="L124">            Cliente c = cliente.get();</span>
+<span class="fc" id="L125">            System.out.printf(&quot;\nCliente: %s\nPuntos: %d\nNivel: %s\n&quot;,</span>
+<span class="fc" id="L126">                    c.getNombre(), c.getPuntos(), c.getNivel());</span>
+<span class="fc" id="L127">        } else {</span>
+<span class="nc" id="L128">            System.out.println(&quot;❌ Cliente no encontrado.&quot;);</span>
+        }
+<span class="fc" id="L130">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

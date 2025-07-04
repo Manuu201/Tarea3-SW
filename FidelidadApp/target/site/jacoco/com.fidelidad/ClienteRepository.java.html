@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClienteRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">FidelidadApp</a> &gt; <a href="index.source.html" class="el_package">com.fidelidad</a> &gt; <span class="el_source">ClienteRepository.java</span></div><h1>ClienteRepository.java</h1><pre class="source lang-java linenums">package com.fidelidad;
+
+import com.fidelidad.Cliente;
+
+import java.util.*;
+
+public class ClienteRepository {
+
+    private final Map&lt;String, Cliente&gt; clientes;
+
+<span class="fc" id="L11">    public ClienteRepository() {</span>
+<span class="fc" id="L12">        this.clientes = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L13">    }</span>
+
+    public void crear(Cliente cliente) {
+<span class="fc" id="L16">        clientes.put(cliente.getId(), cliente);</span>
+<span class="fc" id="L17">    }</span>
+
+    public List&lt;Cliente&gt; listar() {
+<span class="fc" id="L20">        return new ArrayList&lt;&gt;(clientes.values());</span>
+    }
+
+    public Optional&lt;Cliente&gt; buscarPorId(String id) {
+<span class="fc" id="L24">        return Optional.ofNullable(clientes.get(id));</span>
+    }
+
+    public void actualizar(Cliente clienteActualizado) {
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (clientes.containsKey(clienteActualizado.getId())) {</span>
+<span class="fc" id="L29">            clientes.put(clienteActualizado.getId(), clienteActualizado);</span>
+        }
+<span class="fc" id="L31">    }</span>
+
+    public void eliminar(String id) {
+<span class="fc" id="L34">        clientes.remove(id);</span>
+<span class="fc" id="L35">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
