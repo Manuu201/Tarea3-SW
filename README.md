@@ -189,6 +189,18 @@ y con mvn clean test verify se puede verificar las pruebas mostradas en el punto
 
 Aqui esta toda la evidencia relacionada en caso de que no llegue a funcionar 
 
+Pruebas realizadas
+![Screenshot 2025-07-04 180956](https://github.com/user-attachments/assets/5c24a341-99ca-4e5b-b4a1-5af90c839330)
+
+Menu simple implementado 
+![Screenshot 2025-07-04 181024](https://github.com/user-attachments/assets/02bafba1-ec85-4d1a-8728-571ff9dbe2fb)
+
+Cobertura de las pruebas
+![Screenshot 2025-07-04 181935](https://github.com/user-attachments/assets/5f55abe4-befc-428a-9cfe-70580b1ecfcf)
+
+
+
+
 ## Licencia
 
 Este proyecto fue desarrollado como parte de una tarea académica y no posee una licencia de distribución pública.
